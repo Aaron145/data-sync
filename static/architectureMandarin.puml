@@ -1,0 +1,80 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@FinnJC
+Learn Git and GitHub without any code!
+
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+Code Issues 6 Pull requests 1 Projects 0 Actions Wiki Security Pulse Community
+data-sync/static/architecture.puml
+@bkbabydp bkbabydp update arch diagram ca45bdf 3 days ago
+51 lines (38 sloc) 1.33 KB
+@startuml Architecture diagram for wuhan2020 project
+!include https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+'LAYOUT_WITH_LEGEND()
+'LAYOUT_AS_SKETCH()
+
+title
+
+    <u> wuhan2020计划组织架构图 </u>
+
+end title
+
+Person(volunteer, "志愿者")
+
+
+    System(shimo, "石墨", "表格收集")
+    System(github, "wuhan2020/wuhan2020", "Yaml")
+
+
+System_Boundary(data, "wuhan2020/数据汇总"){
+    System(dataFetcher, "收据收集", "")
+    System_Boundary(dataParser, "数据解析"){
+        System_Ext(pluginYML, "YAML 插件")
+        System_Ext(pluginXML, "XML 插件")
+        System_Ext(pluginCVS, "CVS 插件")
+        System_Ext(pluginJSON, "JSON 插件")
+        System_Ext(pluginOther, "其他")
+    }
+    System(dataExport, "数据发布", "")
+}
+
+System_Boundary(web, "wuhan2020/网站服务器"){
+    System_Boundary(api, "Rest-API 服务器"){
+        System(apiMap, "地图 API", "")
+        System(apiWeb, "网站 API", "")
+    }
+    System(front, "网站前端", "")
+}
+
+Rel(volunteer, shimo, "填写")
+Rel(shimo, dataFetcher, "收集")
+Rel(dataFetcher, dataParser, "解析")
+Rel(dataParser, dataExport, "发布")
+Rel(dataExport, github, "YAML 更新")
+Rel(apiWeb, github, "获取 YAML")
+Rel(front, api, "提交")
+Rel(apiMap, dataExport, "获取 JSON")
+
+center footer Architecture diagram for wuhan2020 project
+
+@enduml
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
