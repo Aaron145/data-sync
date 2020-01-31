@@ -37,4 +37,4 @@ $ npm start
 
 ## 功能架构图
 
-![arch](http://api.hypertrons.io/umlrenderer/github/wuhan2020/data-sync?path=static/architecture.puml)
+![arch](https://github.com/FinnJC/data-sync/blob/patch-2/static/architectureMandarin.puml)
