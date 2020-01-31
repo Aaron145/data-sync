@@ -37,4 +37,4 @@ $ npm start
 
 ## 功能架构图
 
-![arch](https://github.com/FinnJC/data-sync/blob/patch-2/static/architectureMandarin.puml)
+![arch](https://github.com/FinnJC/data-sync/blob/patch-1/static/architectureMandarin.puml)
